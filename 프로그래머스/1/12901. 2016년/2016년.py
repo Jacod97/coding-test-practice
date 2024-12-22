@@ -6,3 +6,4 @@ def solution(a, b):
     # 요일 계산 (0: 월요일, 1: 화요일, ..., 6: 일요일)
     weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
     return weekdays[date.weekday()]
+print("sex")
