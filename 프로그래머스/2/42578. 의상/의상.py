@@ -3,12 +3,13 @@ def solution(clothes):
     # (3 + 2 + 3) + (3*2) + (3*3) + (2*3) + (3*2*3) 이 정답일듯?
     
     # step1. 종류별 갯수 저장
-    kind = {i[1]:0 for i in clothes}
-    for x,y in clothes:
-        kind[y] += 1
+    kind = list(dict(clothes).values())
+    kind_count = {}
+    for val in kind:
+        kind_count[val] = kind.count(val)
         
     # step2 갯수만 추출
-    nums = list(kind.values())
+    nums = list(kind_count.values())
     
     # step3 (x+a)(x+b)(x+c)....와 같은 방정식 구조가 나오네요?
     # 다차방정식의 계수의 합을 구하면 정답일듯?  # 1을빼야 정답인데 이유는 모르겠음
