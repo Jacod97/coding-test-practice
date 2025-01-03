@@ -1,11 +1,9 @@
 def solution(participant, completion):
-    player = {}
-    index = 0
-    for name in participant:
-        player[hash(name)] = name
-        index += hash(name)
+    participant.sort()
+    completion.sort()
     
-    for name in completion:
-        index -= hash(name)
-    
-    return player[index]
+    for i in range(len(completion)):
+        if participant[i] != completion[i]:
+            return participant[i]
+        
+    return participant[len(participant)-1]
