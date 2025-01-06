@@ -10,7 +10,6 @@ def solution(clothes):
         
     # step2 갯수만 추출
     nums = list(kind_count.values())
-    
     # step3 (x+a)(x+b)(x+c)....와 같은 방정식 구조가 나오네요?
     # 다차방정식의 계수의 합을 구하면 정답일듯?  # 1을빼야 정답인데 이유는 모르겠음
     answer = 1
