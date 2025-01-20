@@ -1,6 +1,6 @@
 def compare(x, y):
     # 두 숫자 문자열을 이어 붙였을 때 큰 값을 기준으로 비교
-    if x + y > y + x:
+    if x + y > y + x: # ex x=65,y=6 656(x+y) < 665(y+x)
         return x
     else:
         return y
