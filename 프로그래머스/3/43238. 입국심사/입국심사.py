@@ -1,22 +1,31 @@
-def solution(n, times):
-    # 이분 탐색을 위한 초기 범위 설정
-    left = 1
-    right = max(times) * n  # 가장 느린 심사관이 모든 인원 처리하는 최악의 경우
+def pointer(n,times,mid):
+    people = 0
+    for time in times:
+        people += mid // time 
+    
+    if people >= n: #대기 인원 보다 mid시간 내에 더 많거나 같은 인원 수용가능
+        return True
+    else:
+        return False
+    
+def solution(n,times):
+    times.sort()
+    left = 0 # 제한 사항에 1분 이상이래
+    right = times[-1] * n # 최악의 대기 시간
+    answer = 0 # mid 계속 담아야지
 
-    answer = right  # 최소 시간을 찾기 위해 최대값으로 초기화
+    def binary_search(left,right):
+        nonlocal answer
+        mid = (left+right) // 2
+        if left == right: # 탈출 조건
+            return 
 
-    while left <= right:
-        mid = (left + right) // 2  # 중간값 (예상 심사 시간)
-
-        # mid 시간 동안 처리 가능한 총 인원 수 계산
-        total = sum(mid // time for time in times)
-
-        if total >= n:
-            # n명 이상 처리 가능 → 더 짧은 시간에서도 가능한지 확인
-            answer = mid
-            right = mid - 1
+        if pointer(n,times,mid): # n명의 인원이 수용 가능하면
+            answer = mid # 정답을 mid로 일단 해놔
+            binary_search(left,mid-1) # 그리고 right값 줄여봐 (left와 만나기 위해)
         else:
-            # n명 처리 불가능 → 더 많은 시간이 필요
-            left = mid + 1
+            binary_search(mid+1,right) # n명의 인원 수용 불가능하면 증가시켜야지
+        
 
-    return answer
+    binary_search(left,right)
+    return answer # 응 안돼~
